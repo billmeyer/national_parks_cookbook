@@ -1,0 +1,26 @@
+# Systemd unit file for Apache Tomcat 8
+[Unit]
+Description=Apache Tomcat Web Application Container
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=/usr/lib/jvm/jre
+Environment=CATALINA_PID=<%= node['tomcat8']['install_location'] %>/temp/tomcat.pid
+Environment=CATALINA_HOME=<%= node['tomcat8']['install_location'] %>
+Environment=CATALINA_BASE=<%= node['tomcat8']['install_location'] %>
+Environment='CATALINA_OPTS=<%= node['tomcat8']['catalina_opts'] %>'
+Environment='JAVA_OPTS=<%= node['tomcat8']['java_opts'] %>'
+
+ExecStart=<%= node['tomcat8']['install_location'] %>/bin/startup.sh
+ExecStop=/bin/kill -15 $MAINPID
+
+User=<%= node['tomcat8']['tomcat_user'] %>
+Group=<%= node['tomcat8']['tomcat_group'] %>
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

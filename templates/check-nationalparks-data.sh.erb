@@ -1,0 +1,8 @@
+#!/bin/bash
+
+CHKSUM=`mongo demo --eval "db.nationalparks.find().forEach(printjson)" | md5sum | awk '{print $1}'`
+VALUE=<%= node['national_parks']['seeddata']['chksum'] %>
+echo "Computed chksum: ${CHKSUM}"
+echo "Expected chksum: ${VALUE}"
+touch /tmp/${CHKSUM} 2> /dev/null
+[ "${CHKSUM}" == "${VALUE}" ];
