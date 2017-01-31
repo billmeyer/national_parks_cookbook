@@ -22,7 +22,8 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[national_parks::default]
+      #- recipe[national_parks::default]
+      - recipe[national_parks::uninstall]
     verifier:
       inspec_tests:
         - test/smoke/default
