@@ -10,5 +10,6 @@ package 'git'
 
 include_recipe 'national_parks::mongodb'
 include_recipe 'national_parks::tomcat'
+include_recipe 'national_parks::ssl'
 include_recipe 'national_parks::application'
 

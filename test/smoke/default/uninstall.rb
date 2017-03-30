@@ -5,14 +5,11 @@
 # The Inspec reference, with examples and extensive documentation, can be
 # found at http://inspec.io/docs/reference/resources/
 
-unless os.windows?
-  describe user('root') do
-    it { should exist }
-    skip 'This is an example test, replace with your own test.'
-  end
-end
+control 'uninstall-1' do
+  impact 1.0
+  title 'Verify the packages we use are not installed.'
 
-describe port(80) do
-  it { should_not be_listening }
-  skip 'This is an example test, replace with your own test.'
+  describe package 'maven' do
+    it { should_not be_installed }
+  end
 end

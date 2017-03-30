@@ -22,3 +22,12 @@ control 'national-parks-app-checkout-2' do
     its('stdout') { should match /<H1>JSP Snoop page<\/H1>/ }
   end
 end
+
+control 'national-parks-app-checkout-3' do
+  impact 1.0
+  title 'Verify Apache SSL is rendering dynamic pages correctly'
+  desc ''
+  describe command 'curl -k https://localhost/' do
+    its('stdout') { should match /<title>Map of National Parks<\/title>/ }
+  end
+end
