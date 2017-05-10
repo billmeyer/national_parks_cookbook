@@ -1,4 +1,4 @@
-name 'national_parks'
+name 'national_parks_cookbook'
 maintainer 'Bill Meyer'
 maintainer_email 'bill@chef.io'
 license 'all_rights'
