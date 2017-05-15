@@ -9,7 +9,7 @@ require 'spec_helper'
 describe 'national_parks_cookbook::mongodb' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new(platform: 'centos', version: '7.2.1511')
+      runner = ChefSpec::ServerRunner.new(platform: 'centos', version: '7.3.1611')
       runner.converge(described_recipe)
     end
 
