@@ -1,5 +1,5 @@
 #
-# Cookbook:: national_parks
+# Cookbook:: national_parks_cookbook
 # Recipe:: tomcat
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.

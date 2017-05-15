@@ -1,6 +1,6 @@
 # # encoding: utf-8
 
-# Inspec test for recipe national_parks::default
+# Inspec test for recipe national_parks_cookbook::default
 
 # The Inspec reference, with examples and extensive documentation, can be
 # found at http://inspec.io/docs/reference/resources/

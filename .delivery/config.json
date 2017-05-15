@@ -8,10 +8,8 @@
         "publish": {
             "chef_server": true
         }
-    }
-    "skip_phases": [
-        "unit"
-    ],
+    },
+    "skip_phases": [],
     "job_dispatch": {
         "version": "v2"
     },
