@@ -4,7 +4,7 @@ maintainer_email 'bill@chef.io'
 license 'all_rights'
 description 'Installs/Configures national_parks'
 long_description 'Installs/Configures national_parks'
-version '0.1.7'
+version '0.1.8'
 
 # The `issues_url` points to the location where issues for this cookbook are
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when
