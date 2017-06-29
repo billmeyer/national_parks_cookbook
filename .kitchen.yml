@@ -16,13 +16,13 @@ verifier:
   name: inspec
 
 platforms:
-  # - name: ubuntu-16.04
-  - name: centos-7.2
+  - name: ubuntu-16.04
+  - name: centos-7.3
 
 suites:
   - name: default
     run_list:
-      - recipe[national_parks::default]
+      - recipe[national_parks_cookbook::default]
       #- recipe[national_parks::uninstall]
     verifier:
       inspec_tests:

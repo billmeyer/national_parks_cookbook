@@ -11,12 +11,19 @@ Listen 443 https
 ##  the main server and all SSL-enabled virtual hosts.
 ##
 
+<%
+case node['platform_family']
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+%>
 #   Pass Phrase Dialog:
 #   Configure the pass phrase gathering process.
 #   The filtering dialog program (`builtin' is a internal
 #   terminal dialog) has to provide the pass phrase on stdout.
 SSLPassPhraseDialog exec:/usr/libexec/httpd-ssl-pass-dialog
 
+<%
+end
+%>
 #   Inter-Process Session Cache:
 #   Configure the SSL Session Cache: First the mechanism 
 #   to use and second the expiring timeout (in seconds).
@@ -61,10 +68,22 @@ SSLCryptoDevice builtin
 
 # Use separate log files for the SSL virtual host; note that LogLevel
 # is not inherited from httpd.conf.
+
+<%
+case node['platform_family']
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+%>
 ErrorLog logs/ssl_error_log
 TransferLog logs/ssl_access_log
+<%
+when 'debian', 'ubuntu'
+%>
+ErrorLog ${APACHE_LOG_DIR}/error.log
+CustomLog ${APACHE_LOG_DIR}/access.log combined
 LogLevel warn
-
+<%
+end
+%>
 #   SSL Engine Switch:
 #   Enable/Disable SSL for this virtual host.
 SSLEngine on
@@ -212,8 +231,15 @@ BrowserMatch "MSIE [2-5]" \
 #   Per-Server Logging:
 #   The home of a custom SSL log file. Use this when you want a
 #   compact non-error SSL logfile on a virtual host basis.
+<%
+case node['platform_family']
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+%>
 CustomLog logs/ssl_request_log \
           "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+<%
+end
+%>
 
 ProxyRequests On
 ProxyPass / http://localhost:8080/national-parks/

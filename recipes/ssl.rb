@@ -6,11 +6,6 @@
 
 # Enables SSL and mod_jk
 
-package 'httpd'
-# package 'epel-release'
-# package 'tomcat-native'
-package 'mod_ssl'
-
 days = node['national_parks']['cert']['days']
 subject = node['national_parks']['cert']['subject']
 key = node['national_parks']['cert']['key']
@@ -22,33 +17,66 @@ execute 'Create proper SSL cert to match hostname' do
   not_if "test -f #{crt}"
 end
 
-# execute 'Create crt file for import into Workstation' do
-#   command "cp -a #{crt} /home/ubuntu/#{node['hostname']}.automate-demo.com.crt"
-#   action :run
-#   not_if "test -f /home/ubuntu/#{node['hostname']}.automate-demo.com.crt"
-# end
+# Install Apache HTTPd
 
-# execute 'a2enmod jk'
-# execute 'a2enmod ssl'
-# execute 'a2ensite default-ssl'
+case node['platform_family']
+when 'debian', 'ubuntu'
+  package 'apache2'
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+  package 'httpd'
+  package 'mod_ssl'
+else
+  raise "Don't know which Apache HTTPd package to install for the family #{node['platform_family']}"
+end
 
 # Configure Apache
 
-service 'httpd' do
-  action :nothing
-end
+###################
+## Debian
+case node['platform_family']
+when 'debian', 'ubuntu'
+  execute 'a2enmod ssl' do
+    notifies :restart, 'service[apache2]', :delayed
+  end
 
-template '/etc/httpd/conf.d/ssl.conf' do
-  action :create
-  source 'ssl.conf.erb'
-  notifies :restart, 'service[httpd]', :delayed
-end
+  execute 'a2enmod proxy' do
+    notifies :restart, 'service[apache2]', :delayed
+  end
 
-# template '/etc/httpd/conf.modules.d/01-ssl.conf' do
-#   action :create
-#   source '01-ssl.conf.erb'
-#   notifies :restart, 'service[httpd]', :delayed
-# end
+  execute 'a2enmod proxy_http' do
+    notifies :restart, 'service[apache2]', :delayed
+  end
+
+  execute 'a2ensite default-ssl' do
+    notifies :restart, 'service[apache2]', :delayed
+  end
+
+  service 'apache2' do
+    action :nothing
+  end
+
+  template '/etc/apache2/sites-available/default-ssl.conf' do
+    action :create
+    source 'ssl.conf.erb'
+    notifies :restart, 'service[apache2]', :delayed
+  end
+
+###################
+## RPM
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+  service 'httpd' do
+    action :nothing
+  end
+
+  template '/etc/httpd/conf.d/ssl.conf' do
+    action :create
+    source 'ssl.conf.erb'
+    notifies :restart, 'service[httpd]', :delayed
+  end
+
+else
+  raise "Don't know which Apache HTTPd package to install for the family #{node['platform_family']}"
+end
 
 # Configure Tomcat
 

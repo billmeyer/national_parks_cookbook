@@ -14,7 +14,7 @@ describe 'national_parks_cookbook::application' do
     end
 
     it 'converges successfully' do
-      stub_command("/tmp/check-nationalparks-data.sh").and_return(0)
+      stub_command('#{tmp_path}/check-nationalparks-data.sh').and_return(0)
       expect { chef_run }.to_not raise_error
     end
   end

@@ -6,7 +6,16 @@ default['tomcat8']['java_opts'] = '-Djava.awt.headless=true -Djava.security.egd=
 
 default['national_parks']['seeddata']['chksum'] = '67b3c5ffeaecb5892ecccdf0d460d0cb'
 
+case node['platform_family']
+when 'debian', 'ubuntu'
+  default['national_parks']['cert']['home'] = '/etc/ssl'
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+  default['national_parks']['cert']['home'] = '/etc/pki/tls'
+else
+  raise "Don't know which path to install digital certs for the family #{node['platform_family']}"
+end
+
 default['national_parks']['cert']['days'] = '365'
 default['national_parks']['cert']['subject'] = "/C=US/ST=Washington/L=Seattle/O=SA/CN=#{node['hostname']}.automate-demo.com"
-default['national_parks']['cert']['key'] = "/etc/pki/tls/private/#{node['hostname']}.automate-demo.com.key"
-default['national_parks']['cert']['crt'] = "/etc/pki/tls/certs/#{node['hostname']}.automate-demo.com.crt"
+default['national_parks']['cert']['key'] = "#{node['national_parks']['cert']['home']}/private/#{node['hostname']}.automate-demo.com.key"
+default['national_parks']['cert']['crt'] = "#{node['national_parks']['cert']['home']}/certs/#{node['hostname']}.automate-demo.com.crt"
