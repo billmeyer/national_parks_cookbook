@@ -16,6 +16,7 @@ else
 end
 
 default['national_parks']['cert']['days'] = '365'
-default['national_parks']['cert']['subject'] = "/C=US/ST=Washington/L=Seattle/O=SA/CN=#{node['hostname']}.automate-demo.com"
-default['national_parks']['cert']['key'] = "#{node['national_parks']['cert']['home']}/private/#{node['hostname']}.automate-demo.com.key"
-default['national_parks']['cert']['crt'] = "#{node['national_parks']['cert']['home']}/certs/#{node['hostname']}.automate-demo.com.crt"
+default['national_parks']['cert']['subject'] = "/C=US/ST=Washington/L=Seattle/O=SA/CN=#{node['hostnamectl']['static_hostname']}"
+default['national_parks']['cert']['key'] = "#{node['national_parks']['cert']['home']}/private/#{node['hostnamectl']['static_hostname']}.key"
+default['national_parks']['cert']['crt'] = "#{node['national_parks']['cert']['home']}/certs/#{node['hostnamectl']['static_hostname']}.crt"
+default['national_parks']['cert']['csr'] = "#{node['national_parks']['cert']['home']}/certs/#{node['hostnamectl']['static_hostname']}.csr"

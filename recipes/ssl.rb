@@ -10,11 +10,23 @@ days = node['national_parks']['cert']['days']
 subject = node['national_parks']['cert']['subject']
 key = node['national_parks']['cert']['key']
 crt = node['national_parks']['cert']['crt']
+csr = node['national_parks']['cert']['csr']
 
-execute 'Create proper SSL cert to match hostname' do
-  command "openssl req -x509 -nodes -days #{days} -newkey rsa:2048 -subj #{subject} -keyout #{key} -out #{crt}"
-  action :run
-  not_if "test -f #{crt}"
+# execute 'Create proper SSL cert to match hostname' do
+#   command "openssl req -x509 -nodes -days #{days} -newkey rsa:2048 -subj #{subject} -keyout #{key} -out #{crt}"
+#   action :run
+#   not_if "test -f #{crt}"
+# end
+
+bash 'Create proper SSL cert to match hostname' do
+  cwd '/tmp'
+  code <<-EOH
+    openssl genrsa -des3 -passout pass:x -out #{key}.pass 2048
+    openssl rsa -passin pass:x -in #{key}.pass -out #{key}
+    rm #{key}.pass
+    openssl req -new -key #{key} -out #{csr} -subj #{subject}
+    openssl x509 -req -days #{days} -in #{csr} -signkey #{key} -out #{crt}
+  EOH
 end
 
 # Install Apache HTTPd
@@ -52,7 +64,7 @@ when 'debian', 'ubuntu'
   end
 
   service 'apache2' do
-    action :nothing
+    action [:enable, :start]
   end
 
   template '/etc/apache2/sites-available/default-ssl.conf' do
@@ -65,7 +77,7 @@ when 'debian', 'ubuntu'
 ## RPM
 when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
   service 'httpd' do
-    action :nothing
+    action [:enable, :start]
   end
 
   template '/etc/httpd/conf.d/ssl.conf' do

@@ -7,7 +7,7 @@
 case node['platform_family']
 when 'debian', 'ubuntu'
   package 'openjdk-8-jdk'
-  node.set['national_parks_cookbook']['java_home'] = '/usr/lib/jvm/java-8-openjdk-amd64/jre'
+  node.set['national_parks_cookbook']['java_home'] = '/usr/lib/jvm/java-8-openjdk-armhf/jre'
 when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
   package 'java-1.8.0-openjdk'
   node.set['national_parks_cookbook']['java_home'] = '/usr/lib/jvm/jre'

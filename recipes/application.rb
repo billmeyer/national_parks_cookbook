@@ -11,7 +11,7 @@ tmp_path = Chef::Config[:file_cache_path]
 
 git src_path do
   repository 'https://github.com/billmeyer/national-parks.git'
-  revision 'v0.1.4'
+  revision 'v0.1.5'
   user 'tomcat'
   group 'tomcat'
   action :checkout
