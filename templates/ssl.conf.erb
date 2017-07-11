@@ -94,6 +94,10 @@ SSLEngine on
 #SSLProtocol all -SSLv2 -SSLv3
 SSLProtocol all
 
+# Uncomment these lines to make apache more secure
+#SSLProtocol -all +TLSv1.2
+#SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
+
 #   SSL Cipher Suite:
 #   List the ciphers that the client is permitted to negotiate.
 #   See the mod_ssl documentation for a complete list.
