@@ -94,14 +94,14 @@ SSLEngine on
 #SSLProtocol all -SSLv2 -SSLv3
 SSLProtocol all
 
-# Uncomment these lines to make apache more secure
-#SSLProtocol -all +TLSv1.2
-#SSLCipherSuite EECDH+AESGCM:EDH+AESGCM
-
 #   SSL Cipher Suite:
 #   List the ciphers that the client is permitted to negotiate.
 #   See the mod_ssl documentation for a complete list.
 SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5:!SEED:!IDEA
+
+# Uncomment these lines to make apache more secure
+#SSLProtocol -all +TLSv1.2
+#SSLCipherSuite ALL:+HIGH:!RSA:!DH:!ADH:!EXP:!SSLv2:!SSLv3:!MEDIUM:!LOW:!NULL:!aNULL
 
 #   Speed-optimized SSL Cipher configuration:
 #   If speed is your main concern (on busy HTTPS servers e.g.),
