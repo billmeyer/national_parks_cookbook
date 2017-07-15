@@ -11,10 +11,10 @@ The National Parks [1] application is a JavaEE web application that runs on Tomc
 
 ## Software Required
 
-Chef DK - [https://downloads.chef.io/chefdk]()
-Vagrant - [https://www.vagrantup.com/downloads.html]()
-Virtual Box - [https://www.virtualbox.org/wiki/Downloads]()
-Git - [Windows](https://git-scm.com/download/win), [Linux](https://git-scm.com/download/linux), [Mac](https://git-scm.com/download/mac)
+* Chef DK - [https://downloads.chef.io/chefdk]()
+* Vagrant - [https://www.vagrantup.com/downloads.html]()
+* Virtual Box - [https://www.virtualbox.org/wiki/Downloads]()
+* Git - [Windows](https://git-scm.com/download/win), [Linux](https://git-scm.com/download/linux), [Mac](https://git-scm.com/download/mac)
 
 ## Getting Started
 
