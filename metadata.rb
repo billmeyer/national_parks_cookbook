@@ -5,6 +5,9 @@ license 'all_rights'
 description 'Installs/Configures national_parks'
 long_description 'Installs/Configures national_parks'
 version '0.1.14'
+chef_version '>= 12.5' if respond_to?(:chef_version)
+
+supports 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
 
 # The `issues_url` points to the location where issues for this cookbook are
 # tracked.  A `View Issues` link will be displayed on this cookbook's page when

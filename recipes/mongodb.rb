@@ -6,11 +6,9 @@
 
 case node['platform_family']
 when 'debian', 'ubuntu'
-
   package 'mongodb'
 
-when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
-
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
   cookbook_file '/etc/yum.repos.d/mongodb-org-3.4.repo' do
     source 'mongodb-org-3.4.repo'
     owner 'root'
@@ -29,7 +27,6 @@ when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
     mode '0644'
     action :create
   end
-
 else
   raise "Don't know how to install mongodb for the family #{node['platform_family']}"
 end
