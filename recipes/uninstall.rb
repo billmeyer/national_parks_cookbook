@@ -110,4 +110,3 @@ end
 file '/etc/systemd/system/mongodb.service' do
   action :delete
 end
-

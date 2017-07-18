@@ -33,6 +33,6 @@ control 'tomcat-3' do
   title 'Verify the default tomcat8 web page is served correctly.'
 
   describe command 'curl localhost:8080' do
-    its('stdout') { should match /If you're seeing this, you've successfully installed Tomcat. Congratulations!/ }
+    its('stdout') { should match %r{/If you're seeing this, you've successfully installed Tomcat. Congratulations!/} }
   end
 end
