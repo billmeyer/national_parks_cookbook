@@ -1,6 +1,9 @@
 ---
 driver:
   name: vagrant
+  # name: docker
+  # use_sudo: false
+
   network:
     - ["forwarded_port", {guest: 8080, host: 8080}]
     - ["private_network", {ip: "192.168.33.33"}]
