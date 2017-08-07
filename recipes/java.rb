@@ -11,6 +11,8 @@ when 'debian', 'ubuntu'
 when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
   package 'java-1.8.0-openjdk'
   node.set['national_parks_cookbook']['java_home'] = '/usr/lib/jvm/jre'
+when 'windows'
+  chocolatey_package 'jdk8'
 else
   raise "Don't know which java package to install for the family #{node['platform_family']}"
 end

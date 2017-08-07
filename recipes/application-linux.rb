@@ -4,10 +4,12 @@
 #
 # Copyright:: 2017, The Authors, All Rights Reserved.
 
-package 'maven'
+return if platform?('windows')
 
-src_path = '/home/tomcat/national_parks'
 tmp_path = Chef::Config[:file_cache_path]
+
+package 'maven'
+src_path = '/home/tomcat/national_parks'
 
 git src_path do
   repository 'https://github.com/billmeyer/national-parks.git'

@@ -18,6 +18,24 @@ verifier:
 platforms:
   - name: ubuntu-16.04
   - name: centos-7.3
+  - name: windows-2012R2
+    driver:
+      box: mwrock/Windows2012R2
+      username: vagrant
+      password: vagrant
+      communicator: winrm
+  - name: win10
+    driver:
+      box: /Users/bmeyer/chef-git/boxcutter/windows/box/virtualbox/eval-win10x64-enterprise-nocm-1.0.4.box
+      username: vagrant
+      password: vagrant
+      communicator: winrm      
+  - name: win7
+    driver:
+      box: /Users/bmeyer/chef-git/boxcutter/windows/box/virtualbox/eval-win7x64-enterprise-nocm-1.0.4.box
+      username: vagrant
+      password: vagrant
+      communicator: winrm
 
 suites:
   - name: default

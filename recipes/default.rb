@@ -9,11 +9,17 @@ when 'debian', 'ubuntu'
   apt_update 'update'
 end
 
-package 'vim'
-package 'git'
+if node['platform_family'] == 'windows'
+  include_recipe 'chocolatey'
+  chocolatey_package 'git'
+else
+  package 'vim'
+  package 'git'
+end
 
-include_recipe 'national_parks_cookbook::java'
-include_recipe 'national_parks_cookbook::mongodb'
-include_recipe 'national_parks_cookbook::tomcat'
-include_recipe 'national_parks_cookbook::ssl'
-include_recipe 'national_parks_cookbook::application'
+# include_recipe 'national_parks_cookbook::java'
+# include_recipe 'national_parks_cookbook::mongodb'
+# include_recipe 'national_parks_cookbook::tomcat'
+# # include_recipe 'national_parks_cookbook::ssl'
+# include_recipe 'national_parks_cookbook::application-linux'
+# include_recipe 'national_parks_cookbook::application-windows'
