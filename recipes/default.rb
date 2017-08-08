@@ -17,9 +17,9 @@ else
   package 'git'
 end
 
-# include_recipe 'national_parks_cookbook::java'
-# include_recipe 'national_parks_cookbook::mongodb'
-# include_recipe 'national_parks_cookbook::tomcat'
-# # include_recipe 'national_parks_cookbook::ssl'
-# include_recipe 'national_parks_cookbook::application-linux'
-# include_recipe 'national_parks_cookbook::application-windows'
+include_recipe 'national_parks_cookbook::java'
+include_recipe 'national_parks_cookbook::mongodb'
+include_recipe 'national_parks_cookbook::tomcat'
+include_recipe 'national_parks_cookbook::ssl'
+include_recipe 'national_parks_cookbook::application-linux'
+include_recipe 'national_parks_cookbook::application-windows'
