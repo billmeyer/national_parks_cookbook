@@ -34,7 +34,7 @@ end
 case node['platform_family']
 when 'debian', 'ubuntu'
   package 'apache2'
-when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
   package 'httpd'
   package 'mod_ssl'
 else
@@ -75,7 +75,7 @@ when 'debian', 'ubuntu'
 
 ###################
 ## RPM
-when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
   service 'httpd' do
     action [:enable, :start]
   end

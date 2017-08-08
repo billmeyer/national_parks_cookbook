@@ -9,13 +9,11 @@ case node['platform_family']
 #####################################################################
 # Debian Install
 when 'debian', 'ubuntu'
-
   package 'mongodb'
 
 #####################################################################
 # RPM Install
-when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
-
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
   cookbook_file '/etc/yum.repos.d/mongodb-org-3.4.repo' do
     source 'mongodb-org-3.4.repo'
     owner 'root'

@@ -10,7 +10,7 @@ control 'national-parks-app-checkout-1' do
   title 'Verify national parks war deployed'
   desc 'The National Parks app is deployed as a WAR file.  To confirm the war deploys correctly, look for specific content in the default page.'
   describe command 'curl http://localhost:8080/national-parks/' do
-    its('stdout') { should match /<title>Map of National Parks<\/title>/ }
+    its('stdout') { should match %r{Map of National Parks} }
   end
 end
 
@@ -19,7 +19,7 @@ control 'national-parks-app-checkout-2' do
   title 'Verify Tomcat is rendering dynamic pages correctly'
   desc 'The National Parks app has a custom jsp page that can be used to confirm Tomcat is rendering pages correctly.'
   describe command 'curl http://localhost:8080/national-parks/snoop.jsp' do
-    its('stdout') { should match /<H1>JSP Snoop page<\/H1>/ }
+    its('stdout') { should match %r{JSP Snoop page} }
   end
 end
 
@@ -28,6 +28,6 @@ control 'national-parks-app-checkout-3' do
   title 'Verify Apache SSL is rendering dynamic pages correctly'
   desc ''
   describe command 'curl -k https://localhost/' do
-    its('stdout') { should match /<title>Map of National Parks<\/title>/ }
+    its('stdout') { should match %r{Map of National Parks} }
   end
 end

@@ -5,6 +5,15 @@ license 'all_rights'
 description 'Installs/Configures national_parks'
 long_description 'Installs/Configures national_parks'
 version '0.1.14'
+chef_version '>= 12.5' if respond_to?(:chef_version)
+
+supports 'centos'
+supports 'rhel'
+supports 'redhat'
+supports 'fedora'
+supports 'amazon'
+supports 'scientific'
+supports 'oracle'
 
 depends 'chocolatey'
 

@@ -9,7 +9,7 @@ default['national_parks']['seeddata']['chksum'] = '67b3c5ffeaecb5892ecccdf0d460d
 case node['platform_family']
 when 'debian', 'ubuntu'
   default['national_parks']['cert']['home'] = '/etc/ssl'
-when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
   default['national_parks']['cert']['home'] = '/etc/pki/tls'
 when 'windows'
   default['national_parks']['cert']['home'] = 'c:\\'
