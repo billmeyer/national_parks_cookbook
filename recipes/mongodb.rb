@@ -11,6 +11,10 @@ case node['platform_family']
 when 'debian', 'ubuntu'
   package 'mongodb'
 
+  service 'mongodb' do
+    action [:enable, :start]
+  end
+
 #####################################################################
 # RPM Install
 when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
@@ -24,16 +28,23 @@ when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
 
   package 'mongodb-org'
 
-  # Install the service file
-  template '/etc/systemd/system/mongodb.service' do
-    source 'mongodb.service.erb'
-    owner 'root'
-    group 'root'
-    mode '0644'
-    action :create
+  if node['national_parks']['is_systemd']
+    # Install the service file
+    template '/etc/systemd/system/mongod.service' do
+      source 'mongod.service.erb'
+      owner 'root'
+      group 'root'
+      mode '0644'
+      action :create
+    end
+  else
+    execute 'install_service' do
+      command 'chkconfig --add mongod'
+      action :run
+    end
   end
 
-  service 'mongodb' do
+  service 'mongod' do
     action [:enable, :start]
   end
 

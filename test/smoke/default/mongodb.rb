@@ -7,9 +7,9 @@
 
 control 'mongodb-1' do
   impact 1.0
-  title 'Verify the mongodb service is enabled and is running.'
+  title 'Verify the mongod service is enabled and is running.'
 
-  describe service 'mongodb' do
+  describe service 'mongod' do
     it { should be_enabled }
     it { should be_running }
   end
@@ -17,7 +17,7 @@ end
 
 control 'mongodb-2' do
   impact 1.0
-  title 'Verify mongodb is listening on its configured port.'
+  title 'Verify mongod is listening on its configured port.'
 
   describe port(27017) do
     it { should be_listening }

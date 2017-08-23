@@ -8,7 +8,26 @@ return if platform?('windows')
 
 tmp_path = Chef::Config[:file_cache_path]
 
-package 'maven'
+case node['platform_family']
+when 'debian', 'ubuntu'
+  package 'maven'
+
+when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
+  if node['platform_version'].start_with?('6.')
+    cookbook_file '/etc/yum.repos.d/epel-apache-maven.repo' do
+      content 'epel-apache-maven.repo'
+      owner 'root'
+      group 'root'
+      mode '0644'
+      action :create
+    end
+
+    package 'apache-maven'
+  elsif node['platform_version'].start_with?('7.')
+    package 'maven'
+  end
+end
+
 src_path = '/home/tomcat/national_parks'
 
 git src_path do

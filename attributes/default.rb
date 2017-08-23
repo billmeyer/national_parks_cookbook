@@ -1,3 +1,7 @@
+unless node['platform_family'] == 'windows'
+  default['national_parks']['is_systemd'] = Dir.exist?('/etc/systemd')
+end
+
 default['tomcat8']['archive_name'] = 'apache-tomcat-8.5.11.tar.gz'
 default['tomcat8']['download_url'] = "http://archive.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/#{default['tomcat8']['archive_name']}"
 default['tomcat8']['install_location'] = '/opt/tomcat8.5'
@@ -18,15 +22,10 @@ else
 end
 
 default['national_parks']['cert']['days'] = '365'
-default['national_parks']['cert']['subject'] = "/C=US/ST=Washington/L=Seattle/O=SA/CN=#{node['hostnamectl']['static_hostname']}"
+default['national_parks']['cert']['subject'] = "/C=US/ST=Washington/L=Seattle/O=SA/CN=#{node['machinename']}"
 
-# if node['platform_family'] == 'windows'
-#   default['national_parks']['cert']['key'] = "#{node['national_parks']['cert']['home']}\\#{node['hostname']['static_hostname']}.key"
-#   default['national_parks']['cert']['crt'] = "#{node['national_parks']['cert']['home']}\\#{node['hostname']['static_hostname']}.crt"
-#   default['national_parks']['cert']['csr'] = "#{node['national_parks']['cert']['home']}\\#{node['hostname']['static_hostname']}.csr"  
-# else
 if node['platform_family'] != 'windows'
-  default['national_parks']['cert']['key'] = "#{node['national_parks']['cert']['home']}/private/#{node['hostnamectl']['static_hostname']}.key"
-  default['national_parks']['cert']['crt'] = "#{node['national_parks']['cert']['home']}/certs/#{node['hostnamectl']['static_hostname']}.crt"
-  default['national_parks']['cert']['csr'] = "#{node['national_parks']['cert']['home']}/certs/#{node['hostnamectl']['static_hostname']}.csr"
+  default['national_parks']['cert']['key'] = "#{node['national_parks']['cert']['home']}/private/#{node['machinename']}.key"
+  default['national_parks']['cert']['crt'] = "#{node['national_parks']['cert']['home']}/certs/#{node['machinename']}.crt"
+  default['national_parks']['cert']['csr'] = "#{node['national_parks']['cert']['home']}/certs/#{node['machinename']}.csr"
 end

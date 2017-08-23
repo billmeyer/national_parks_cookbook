@@ -68,19 +68,35 @@ when 'debian', 'ubuntu', 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
   #   mode '0755'
   # end
 
-  # Install the service file
-  template '/etc/systemd/system/tomcat8.service' do
-    source 'tomcat8.service.erb'
-    owner 'root'
-    group 'root'
-    mode '0644'
-    action :create
+  if node['national_parks']['is_systemd']
+    # Install the service file
+    template '/etc/systemd/system/tomcat8.service' do
+      source 'tomcat8.service.erb'
+      owner 'root'
+      group 'root'
+      mode '0644'
+      action :create
+    end
+  else
+    # Install the service file
+    template '/etc/init.d/tomcat8' do
+      source 'tomcat8.initd.erb'
+      owner 'root'
+      group 'root'
+      mode '0755'
+      action :create
+    end
+
+    execute 'install_service' do
+      command 'chkconfig --add tomcat8'
+      action :run
+    end
   end
 
   # Start and enable tomcat service if requested
   service 'tomcat8' do
     action [:enable, :start]
-  #   only_if { node['tomcat8']['autostart'] }
+    #   only_if { node['tomcat8']['autostart'] }
   end
 
 #####################################################################
@@ -94,5 +110,5 @@ when 'windows'
   end
 
 else
-  raise "Don't know how to install mongodb for the family #{node['platform_family']}"
+  raise "Don't know how to install tomcat for the family #{node['platform_family']}"
 end

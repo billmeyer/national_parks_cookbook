@@ -6,7 +6,7 @@
 
 return unless platform?('windows')
 
-tmp_path = Chef::Config[:file_cache_path]
+# tmp_path = Chef::Config[:file_cache_path]
 
 chocolatey_package 'maven'
 src_path = 'c:\Users\vagrant\national_parks'
@@ -25,7 +25,6 @@ end
 
 remote_file 'C:\Program Files\Apache Software Foundation\tomcat\apache-tomcat-8.5.12\webapps\national-parks.war' do
   source 'file:///c:\Users\vagrant\national_parks\target\national-parks.war'
-    #   mode '0644'
 end
 
 # template "#{tmp_path}/check-nationalparks-data.sh" do
@@ -42,5 +41,5 @@ execute 'Load National Park Data' do
   action :run
   returns 1
   live_stream true
-#   not_if "#{tmp_path}/check-nationalparks-data.sh"
+  #   not_if "#{tmp_path}/check-nationalparks-data.sh"
 end

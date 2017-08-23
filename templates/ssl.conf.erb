@@ -1,3 +1,5 @@
+LoadModule ssl_module modules/mod_ssl.so
+
 #
 # When we also provide SSL we have to listen to the 
 # the HTTPS port in addition.
@@ -14,14 +16,15 @@ Listen 443 https
 <%
 case node['platform_family']
 when 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+  if node['platform_version'].start_with?('7.')
 %>
 #   Pass Phrase Dialog:
 #   Configure the pass phrase gathering process.
 #   The filtering dialog program (`builtin' is a internal
 #   terminal dialog) has to provide the pass phrase on stdout.
 SSLPassPhraseDialog exec:/usr/libexec/httpd-ssl-pass-dialog
-
 <%
+  end
 end
 %>
 #   Inter-Process Session Cache:
