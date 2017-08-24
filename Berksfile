@@ -2,4 +2,4 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-cookbook 'chocolatey', '~> 1.2.0'
+# cookbook 'chocolatey', '~> 1.2.0'

@@ -9,8 +9,9 @@ when 'debian', 'ubuntu'
   apt_update 'update'
 end
 
+include_recipe 'chocolatey'
+
 if node['platform_family'] == 'windows'
-  include_recipe 'chocolatey'
   chocolatey_package 'git'
 else
   package 'vim'

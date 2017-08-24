@@ -6,7 +6,8 @@
 
 return if platform?('windows')
 
-tmp_path = Chef::Config[:file_cache_path]
+# tmp_path = Chef::Config[:file_cache_path]
+tmp_path = '/tmp'
 
 case node['platform_family']
 when 'debian', 'ubuntu'
