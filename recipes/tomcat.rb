@@ -10,7 +10,7 @@ case node['platform_family']
 
 #####################################################################
 # Debian/RPM Install
-when 'debian', 'ubuntu', 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+when 'debian', 'ubuntu', 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
 
   group 'tomcat' do
     gid '5001'
