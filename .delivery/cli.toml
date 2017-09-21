@@ -1,7 +1,0 @@
-api_protocol = "https"
-enterprise = "acme"
-git_port = "8989"
-organization = "infrastructure-services"
-pipeline = "master"
-server = "chefautomate01.billmeyer.corp"
-user = "bmeyer"
