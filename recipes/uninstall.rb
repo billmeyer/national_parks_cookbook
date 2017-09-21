@@ -50,7 +50,7 @@ end
 
 # Stop and disable tomcat service if requested
 service 'tomcat8' do
-  action [:disable, :stop]
+  action %i[disable stop]
 end
 
 user 'tomcat' do
@@ -87,20 +87,20 @@ end
 # Remove the mongo recipe artifacts next
 
 service 'mongodb' do
-  action [:disable, :stop]
+  action %i[disable stop]
 end
 
 file '/etc/yum.repos.d/mongodb-org-3.4.repo' do
   action :delete
 end
 
-%w(
+%w[
   mongodb-org
   mongodb-org-server
   mongodb-org-mongos
   mongodb-org-tools
   mongodb-org-shell
-).each do |pkg|
+].each do |pkg|
   package pkg do
     action :remove
   end

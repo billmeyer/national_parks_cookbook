@@ -95,7 +95,7 @@ when 'debian', 'ubuntu', 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scient
 
   # Start and enable tomcat service if requested
   service 'tomcat8' do
-    action [:enable, :start]
+    action %i[enable start]
     #   only_if { node['tomcat8']['autostart'] }
   end
 
@@ -106,7 +106,7 @@ when 'windows'
   chocolatey_package 'tomcat'
 
   windows_service 'tomcat8' do
-    action [:enable, :start]
+    action %i[enable start]
   end
 
 else

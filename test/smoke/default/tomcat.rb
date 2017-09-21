@@ -33,6 +33,6 @@ control 'tomcat-3' do
   title 'Verify the default tomcat8 web page is served correctly.'
 
   describe command 'curl localhost:8080' do
-    its('stdout') { should match /Congratulations!/ }
+    its('stdout') { should match(/Congratulations!/) }
   end
 end
