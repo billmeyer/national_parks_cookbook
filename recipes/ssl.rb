@@ -64,7 +64,7 @@ when 'debian', 'ubuntu'
   end
 
   service 'apache2' do
-    action [:enable, :start]
+    action %i[enable start]
   end
 
   template '/etc/apache2/sites-available/default-ssl.conf' do
@@ -77,7 +77,7 @@ when 'debian', 'ubuntu'
 ## RPM
 when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
   service 'httpd' do
-    action [:enable, :start]
+    action %i[enable start]
   end
 
   template '/etc/httpd/conf.d/ssl.conf' do

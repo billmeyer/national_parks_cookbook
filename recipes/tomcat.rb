@@ -10,7 +10,7 @@ case node['platform_family']
 
 #####################################################################
 # Debian/RPM Install
-when 'debian', 'ubuntu', 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
+when 'debian', 'ubuntu', 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
 
   group 'tomcat' do
     gid '5001'
@@ -95,7 +95,7 @@ when 'debian', 'ubuntu', 'centos', 'rhel', 'redhat', 'fedora', 'amazon'
 
   # Start and enable tomcat service if requested
   service 'tomcat8' do
-    action [:enable, :start]
+    action %i[enable start]
     #   only_if { node['tomcat8']['autostart'] }
   end
 
@@ -106,7 +106,7 @@ when 'windows'
   chocolatey_package 'tomcat'
 
   windows_service 'tomcat8' do
-    action [:enable, :start]
+    action %i[enable start]
   end
 
 else

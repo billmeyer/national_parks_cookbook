@@ -12,7 +12,7 @@ when 'debian', 'ubuntu'
   package 'mongodb'
 
   service 'mongodb' do
-    action [:enable, :start]
+    action %i[enable start]
   end
 
 #####################################################################
@@ -45,7 +45,7 @@ when 'centos', 'rhel', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'
   end
 
   service 'mongod' do
-    action [:enable, :start]
+    action %i[enable start]
   end
 
 #####################################################################
@@ -74,7 +74,7 @@ when 'windows'
   end
 
   windows_service 'mongodb' do
-    action [:enable, :start]
+    action %i[enable start]
   end
 
 else

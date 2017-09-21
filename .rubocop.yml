@@ -18,24 +18,9 @@
 Metrics/LineLength:
   Max: 144
 
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: []  
 
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/NumericLiterals:
   MinDigits: 6
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles, AllowInnerSlashes.
-# SupportedStyles: slashes, percent_r, mixed
-# Style/RegexpLiteral:
-#   Exclude:
-#     - 'test/smoke/default/application.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: final_newline, final_blank_line
-# Style/TrailingBlankLines:
-#   Exclude:
-#     - 'recipes/uninstall.rb'
