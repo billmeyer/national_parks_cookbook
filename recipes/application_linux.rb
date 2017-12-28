@@ -33,7 +33,7 @@ src_path = '/home/tomcat/national_parks'
 
 git src_path do
   repository 'https://github.com/billmeyer/national-parks.git'
-  revision 'v0.1.5'
+  revision 'v0.1.6'
   user 'tomcat'
   group 'tomcat'
   action :checkout
