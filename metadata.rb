@@ -4,7 +4,7 @@ maintainer_email 'bill@chef.io'
 license 'Apache-2.0'
 description 'Installs/Configures national_parks'
 long_description 'Installs/Configures national_parks'
-version '0.1.17'
+version '0.1.18'
 chef_version '>= 12.5' if respond_to?(:chef_version)
 
 supports 'centos'
